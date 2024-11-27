@@ -3,7 +3,7 @@ import Controllers.PersonaController;
 import Models.Persona;
 
 public class App {
-        public static void main(String[] args) throws Exception {
+        public static void main(String[] args) {
                 Persona[] personas = {
                                 new Persona("Anais", 25),
                                 new Persona("Luis", 32),
@@ -36,49 +36,55 @@ public class App {
                                 new Persona("Lorena", 23),
                                 new Persona("Miguel", 52)
                 };
-                
-                PersonaController persona1 = new PersonaController();
 
-                System.out.println("Arreglo ordenado por la edad: ");
-                persona1.sortAgeWithSelection(personas);
-                persona1.searchBinarySearchAge(personas, 25);
-                persona1.searchBinarySearchAge(personas, 70);
+                App app = new App();
 
-                System.out.println("Arreglo ordenado por el nombre: ");
-                persona1.sortNameWithInsercion(personas);
-                persona1.searchBinarySearchName(personas, "Anais");
-                persona1.searchBinarySearchName(personas, "Miguel");
-                
-                
+                PersonaController controller = new PersonaController();
 
+                System.out.println("Ordenamiento por edad en orden descendente");
+                controller.ordenamientoSelecion(personas);
+                app.printPersonasArray(personas);
 
+                System.out.println("Busqueda de persona con edad 25");
+                app.searchAndPrintByAge(controller, personas, 25);
 
+                System.out.println("Busqueda de persona con edad 70");
+                app.searchAndPrintByAge(controller, personas, 70);
 
+                System.out.println("Ordenamiento por nombre en orden ascendente");
+                controller.ordenamientoInsercio(personas);
+                app.printPersonasArray(personas);
 
-                /// TODOS los métodos deben ser implementados en la clase PersonaController
-                // Crear una instancia de la clase PersonaController y llamar a los métodos
-                // NO usar metodos estaticos
+                System.out.println("Busqueda de persona Anais");
+                app.searchAndPrintByName(controller, personas, "Anais");
 
-                // 1 - Implementar un método para ordenar las personas por edad en orden
-                // desecendente tipo selección
+                System.out.println("Busqueda de persona Miguel");
+                app.searchAndPrintByName(controller, personas, "Miguel");
+        }
 
-                // 1.2 - Buscar a la persona con las sigueintes edaddes en el arreglo de
-                // personas ya ordenarod por edad
-                // - 25
-                // - 70
+        public void printPersonasArray(Persona[] personas) {
+                for (int i = 0; i < personas.length; i++) {
+                        System.out.println(personas[i].getName() + " (" + personas[i].getage() + " años)");
+                }
+        }
 
-                // 2 - Implementar un método para ordenar las personas por su nombre en orden
-                // ascendente tipo inserción
+        public void searchAndPrintByAge(PersonaController controller, Persona[] personas, int age) {
+                int index = controller.busquedaBinariaEdad(personas, age);
+                if (index != -1) {
+                        System.out.println("Persona encontrada: " + personas[index].getName() + " ("
+                                        + personas[index].getage() + " años) en el índice " + index);
+                } else {
+                        System.out.println("Persona con edad " + age + " no encontrada.");
+                }
+        }
 
-                // 2.2 - Buscar a la persona con los sigueintes nombres en el arreglo de
-                // personas ya ordenarod por nombre
-                // - "Anais"
-                // - "Miguel"
-
-                // Imprimir:
-                // el arreglo ordenado para cada punto 1 y 2
-                // Si encontró a la persona en el arreglo de personas los datos de dicha persona
-                // y su posición
-                // Si no encontró a la persona en el arreglo de personas
+        public void searchAndPrintByName(PersonaController controller, Persona[] personas, String name) {
+                int index = controller.busquedaBinariaNombre(personas, name);
+                if (index != -1) {
+                        System.out.println("Persona encontrada: " + personas[index].getName() + " ("
+                                        + personas[index].getage() + " años) en el índice " + index);
+                } else {
+                        System.out.println("Persona con nombre '" + name + "' no encontrada.");
+                }
         }
 }

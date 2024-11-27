@@ -12,7 +12,7 @@ import Models.Persona;
  * 
  */
 public class PersonaController {
-    public void sortAgeWithSelection(Persona[] people) {
+    public void ordenamientoSelecion(Persona[] people) {
         int n = people.length;
         for (int i = 0; i < n; i++) {
             int min = 1;
@@ -27,7 +27,7 @@ public class PersonaController {
         }
     }
 
-    public void sortNameWithInsercion(Persona[] people) {
+    public void ordenamientoInsercio(Persona[] people) {
         for (int i = 1; i < people.length; i++) {
             Persona key = people[i];
             int j = i - 1;
@@ -39,7 +39,7 @@ public class PersonaController {
         }
     }
 
-    public int searchBinarySearchAge(Persona[] people, int Age) {
+    public int busquedaBinariaEdad(Persona[] people, int Age) {
         int left = 0;
         int right = people.length - 1;
         while (left <= right) {
@@ -56,21 +56,24 @@ public class PersonaController {
         return -1;
     }
 
-    public void searchBinarySearchName(Persona[] people, String name) {
+    public int busquedaBinariaNombre(Persona[] people, String name) {
         int left = 0;
         int right = people.length - 1;
+
         while (left <= right) {
-            int mid = (left - right) / 2;
+            int mid = left + (right - left) / 2;
+
             if (people[mid].getName().equals(name)) {
-                return;
+                return mid; 
             }
-            if (people[mid].getName().compareTo(name) > 0) {
-                left = mid + 1;
+
+            if (people[mid].getName().compareTo(name) < 0) {
+                left = mid + 1; 
             } else {
-                right = mid - 1;
+                right = mid - 1; 
             }
         }
-        return;
-    }
 
+        return -1; 
+    }
 }
