@@ -2,24 +2,46 @@ package Models;
 
 /**
  * 
- * Clase Persona que representa una entidad Persona con atributos para nombre y
+ * Clase Persona que representa una entidad Persona con atributos para name y
  * edad.
  */
 public class Persona {
     // Atributos de la clase
-    String nombre; // Almacena el nombre de la carro
-    int edad; // Almacena la edad de la carro
+    String name; // Almacena el name de la carro
+    int age; // Almacena la age de la carro
 
     /**
-     * Constructor para crear una nueva instancia de Persona con un nombre y edad
+     * Constructor para crear una nueva instancia de Persona con un name y age
      * específicos.
      * 
-     * @param nombre Nombre de la persona.
-     * @param edad   Edad de la persona.
+     * @param name Nombre de la persona.
+     * @param age   age de la persona.
      */
-    public Persona(String nombre, int edad) {
-        this.nombre = nombre; // Asigna el nombre pasado al atributo nombre de la clase
-        this.edad = edad; // Asigna la edad pasada al atributo edad de la clase
+    public Persona(String name, int age) {
+        this.name = name; // Asigna el name pasado al atributo name de la clase
+        this.age = age; // Asigna la age pasada al atributo age de la clase
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getage() {
+        return age;
+    }
+
+    public void setage(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona [name=" + name + ", age=" + age + "]";
+    }
+    
 
 }

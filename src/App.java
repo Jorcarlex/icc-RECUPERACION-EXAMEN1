@@ -1,4 +1,5 @@
 
+import Controllers.PersonaController;
 import Models.Persona;
 
 public class App {
@@ -35,6 +36,24 @@ public class App {
                                 new Persona("Lorena", 23),
                                 new Persona("Miguel", 52)
                 };
+                
+                PersonaController persona1 = new PersonaController();
+
+                System.out.println("Arreglo ordenado por la edad: ");
+                persona1.sortAgeWithSelection(personas);
+                persona1.searchBinarySearchAge(personas, 25);
+                persona1.searchBinarySearchAge(personas, 70);
+
+                System.out.println("Arreglo ordenado por el nombre: ");
+                persona1.sortNameWithInsercion(personas);
+                persona1.searchBinarySearchName(personas, "Anais");
+                persona1.searchBinarySearchName(personas, "Miguel");
+                
+                
+
+
+
+
 
                 /// TODOS los métodos deben ser implementados en la clase PersonaController
                 // Crear una instancia de la clase PersonaController y llamar a los métodos
